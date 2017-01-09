@@ -40,7 +40,7 @@ public class DBConnection {
     public void connect(){
         ServerAddress serverAddress = new ServerAddress(url, 27017);
         if(isAuth){
-            MongoCredential credential = MongoCredential.createPlainCredential(user, dbName, pass.toCharArray());
+            MongoCredential credential = MongoCredential.createScramSha1Credential(user, dbName, pass.toCharArray());
             List<MongoCredential> auths = new ArrayList<MongoCredential>();
             auths.add(credential);
             mongoClient = new MongoClient(serverAddress, auths);
